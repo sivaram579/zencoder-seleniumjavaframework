@@ -41,14 +41,6 @@ jobs:
             path: test-output/reports/
             retention-days: 7
             
-        - name: Publish Screenshots
-          if: always()
-          uses: actions/upload-artifact@v4
-          with:
-            name: test-screenshots
-            path: test-output/screenshots/
-            retention-days: 7
-            
     publish-reports:
         name: Publish Test Reports
         needs: test
@@ -61,12 +53,6 @@ jobs:
           with:
             name: extent-reports
             path: reports
-            
-        - name: Download Screenshots
-          uses: actions/download-artifact@v4
-          with:
-            name: test-screenshots
-            path: reports/screenshots
             
         - name: Create Report Index
           run: |
