@@ -12,8 +12,6 @@ This is a robust test automation framework built with Selenium WebDriver, TestNG
 - Logging of test steps
 - Cross-browser testing support (Chrome, Firefox, Edge)
 - CI/CD integration with GitHub Actions
-- Parallel test execution
-- Scheduled test runs
 
 ## Project Structure
 
@@ -21,11 +19,8 @@ This is a robust test automation framework built with Selenium WebDriver, TestNG
 selenium-testng-project/
 ├── .github/
 │   └── workflows/                   # GitHub Actions workflow files
-│       ├── maven-test.yml           # Standard test workflow
-│       ├── parallel-tests.yml       # Parallel browser testing
-│       ├── publish-reports.yml      # Report publishing workflow
-│       ├── scheduled-tests.yml      # Scheduled test runs
-│       └── README.md                # Workflows documentation
+│       ├── maven-test.yml           # Test automation workflow
+│       └── README.md                # Workflow documentation
 ├── src/
 │   ├── main/
 │   │   └── java/
@@ -96,33 +91,21 @@ You can customize the reports by modifying the `ExtentReportManager` class:
 
 ## GitHub Actions Integration
 
-This framework includes GitHub Actions workflows for continuous integration and automated testing:
+This framework includes a GitHub Actions workflow for continuous integration and automated testing:
 
-### Available Workflows
+### Maven Test Workflow
 
-1. **Standard Test Workflow** (`maven-test.yml`)
-   - Runs on every push to main/master branch and on pull requests
-   - Executes tests on Chrome browser
-   - Archives test reports and screenshots
+The `maven-test.yml` workflow automates the testing process:
 
-2. **Scheduled Tests** (`scheduled-tests.yml`)
-   - Runs daily at 2 AM UTC
-   - Sends email notifications on failure
-   - Archives test reports with longer retention
-
-3. **Parallel Browser Testing** (`parallel-tests.yml`)
-   - Runs tests in parallel on multiple browsers (Chrome, Firefox)
-   - Uses matrix strategy for efficient execution
-   - Archives browser-specific test reports
-
-4. **Report Publishing** (`publish-reports.yml`)
-   - Publishes test reports to GitHub Pages
-   - Creates an index page for easy navigation
-   - Triggered after test workflows complete
+- **Triggers**: Runs on pushes to main/master, pull requests, and manual triggers
+- **Environment**: Uses Ubuntu with JDK 11 and Chrome browser
+- **Process**: Builds the project, runs tests, and generates reports
+- **Artifacts**: Saves test reports and screenshots for 14 days
+- **Summary**: Provides a test execution summary directly in GitHub
 
 ### Running Tests with Different Browsers
 
-You can specify the browser for test execution using the system property:
+You can specify the browser for local test execution using the system property:
 
 ```bash
 mvn test -Dbrowser=chrome
@@ -130,11 +113,24 @@ mvn test -Dbrowser=firefox
 mvn test -Dbrowser=edge
 ```
 
-### Viewing GitHub Actions Reports
+### Viewing Test Reports
 
-After GitHub Actions workflows run, you can:
-1. Download test reports as artifacts from the workflow run
-2. View published reports on GitHub Pages (if enabled)
-3. Check the workflow logs for test execution details
+After the GitHub Actions workflow runs, you can access test reports in two ways:
+
+1. **Download Artifacts**: 
+   - Go to the workflow run in GitHub Actions
+   - Download the "test-reports-{run_id}" artifact
+   - Extract and open the HTML reports in a browser
+
+2. **Workflow Summary**:
+   - A summary of test results is displayed directly in the workflow run
+   - This provides a quick overview without downloading artifacts
+
+### Workflow Features
+
+- **Concurrency control**: Prevents multiple workflow runs from interfering
+- **Timeout limits**: Prevents workflows from running indefinitely
+- **Caching**: Maven dependencies are cached to speed up builds
+- **Error handling**: Robust handling of test failures
 
 For more details on GitHub Actions configuration, see the [workflows README](.github/workflows/README.md).

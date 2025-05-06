@@ -1,112 +1,69 @@
-# GitHub Actions Workflows
+# GitHub Actions Workflow
 
-This directory contains GitHub Actions workflows for automating the testing process.
+This directory contains the GitHub Actions workflow for automating the Selenium test execution process.
 
-## Available Workflows
+## Maven Test Workflow (maven-test.yml)
 
-### 1. maven-test.yml
-Runs Selenium tests on every push to main/master branch and on pull requests.
+This workflow runs Selenium tests on every push to main/master branch, on pull requests, and can be triggered manually.
 
-**Triggers:**
-- Push to main/master
-- Pull requests to main/master
+### Triggers
+- Push to main/master branch
+- Pull requests to main/master branch
 - Manual trigger (workflow_dispatch)
 
-**Actions:**
-- Checks out code
-- Sets up JDK 11
-- Sets up Chrome
-- Builds with Maven
-- Runs tests
-- Archives test reports and screenshots
+### Workflow Steps
+1. **Checkout code**: Retrieves the repository code
+2. **Set up JDK 11**: Configures Java environment
+3. **Setup Chrome**: Installs Chrome browser for testing
+4. **Build with Maven**: Compiles the project
+5. **Run Tests**: Executes the Selenium tests
+6. **Generate Extent Reports**: Processes and lists the test reports
+7. **Archive test results**: Saves reports and screenshots as artifacts
+8. **Publish Test Report**: Creates a summary of test results in the workflow
 
-### 2. scheduled-tests.yml
-Runs tests on a schedule (daily at 2 AM UTC).
+### Key Features
+- **Concurrency control**: Prevents multiple workflow runs from interfering with each other
+- **Timeout limits**: Prevents workflows from running indefinitely (20 minutes max)
+- **Artifact retention**: Keeps test reports for 14 days
+- **Test summary**: Provides a quick overview of test results directly in GitHub
+- **Error handling**: Robust handling of test failures and missing files
 
-**Triggers:**
-- Schedule (cron: '0 2 * * *')
-- Manual trigger (workflow_dispatch)
+## Running the Workflow Manually
 
-**Actions:**
-- Checks out code
-- Sets up JDK 11
-- Sets up Chrome
-- Builds with Maven
-- Runs tests
-- Archives test reports and screenshots
-- Sends email notification on failure (requires secrets configuration)
-
-### 3. parallel-tests.yml
-Runs tests in parallel on multiple browsers.
-
-**Triggers:**
-- Push to main/master (only when specific files change)
-- Manual trigger (workflow_dispatch)
-
-**Actions:**
-- Checks out code
-- Sets up JDK 11
-- Sets up specified browser (Chrome or Firefox)
-- Builds with Maven
-- Runs tests with browser parameter
-- Archives test reports and screenshots for each browser
-
-### 4. publish-reports.yml
-Publishes test reports to GitHub Pages.
-
-**Triggers:**
-- Completion of any test workflow
-
-**Actions:**
-- Downloads test report artifacts
-- Creates an index page
-- Publishes reports to GitHub Pages
-
-## Required Secrets for Email Notifications
-
-To enable email notifications for scheduled test failures, add these secrets to your repository:
-
-- `ENABLE_EMAIL_NOTIFICATIONS`: Set to 'true' to enable email notifications
-- `MAIL_SERVER`: SMTP server address
-- `MAIL_PORT`: SMTP server port
-- `MAIL_USERNAME`: Email username
-- `MAIL_PASSWORD`: Email password
-- `NOTIFICATION_EMAIL`: Email address to receive notifications
-
-## Required Setup for GitHub Pages
-
-To enable publishing reports to GitHub Pages:
-
-1. Go to your repository settings
-2. Navigate to "Pages" under "Code and automation"
-3. Under "Build and deployment", select "GitHub Actions" as the source
-4. The publish-reports.yml workflow will handle the rest
-
-## Running Workflows Manually
-
-You can manually trigger any workflow from the "Actions" tab in your GitHub repository.
+To manually trigger the workflow:
+1. Go to the "Actions" tab in your GitHub repository
+2. Select "Selenium Test Automation" workflow
+3. Click "Run workflow"
+4. Select the branch to run against
+5. Click "Run workflow" button
 
 ## Viewing Test Reports
 
-After the workflows run, test reports will be:
-1. Available as downloadable artifacts for each workflow run
-2. Published to GitHub Pages (if the publish-reports workflow is enabled)
+After the workflow runs, you can access the test reports in two ways:
 
-## Customizing Workflows
+1. **Artifacts**: 
+   - Go to the workflow run
+   - Scroll down to the "Artifacts" section
+   - Download the "test-reports-{run_id}" artifact
+   - Extract and open the HTML reports in a browser
 
-You can customize these workflows by:
+2. **Workflow Summary**:
+   - A summary of available reports is displayed directly in the workflow run
+   - This provides a quick overview of the test execution
+
+## Customizing the Workflow
+
+You can customize this workflow by:
 - Changing the trigger conditions
-- Modifying the browser matrix
-- Adjusting the schedule
-- Adding more test parameters
-- Modifying timeout values
-- Adjusting concurrency settings
+- Modifying the timeout value
+- Adding additional build or test parameters
+- Configuring different browser options
+- Adding post-test actions like notifications
 
 ## Workflow Optimizations
 
-The workflows include several optimizations:
-- **Concurrency limits**: Prevents multiple workflow runs from interfering with each other
-- **Timeouts**: Prevents workflows from running indefinitely
-- **Conditional steps**: Email notifications only run when enabled
-- **Artifact naming**: Unique names for artifacts from different runs
-- **Error handling**: Robust handling of missing files and directories
+The workflow includes several optimizations:
+- **Concurrency limits**: Prevents parallel runs from interfering with each other
+- **Caching**: Maven dependencies are cached to speed up builds
+- **Conditional steps**: Some steps only run when needed
+- **Unique artifact naming**: Prevents overwriting artifacts from different runs
