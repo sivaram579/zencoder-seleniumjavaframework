@@ -19,7 +19,7 @@ This is a robust test automation framework built with Selenium WebDriver, TestNG
 selenium-testng-project/
 ├── .github/
 │   └── workflows/                   # GitHub Actions workflow files
-│       ├── maven-test.yml           # Test automation workflow
+│       ├── maven-test.yml           # Simple test workflow
 │       └── README.md                # Workflow documentation
 ├── src/
 │   ├── main/
@@ -91,7 +91,7 @@ You can customize the reports by modifying the `ExtentReportManager` class:
 
 ## GitHub Actions Integration
 
-This framework includes a GitHub Actions workflow for continuous integration and automated testing:
+This framework includes a simple GitHub Actions workflow for continuous integration:
 
 ### Maven Test Workflow
 
@@ -99,9 +99,8 @@ The `maven-test.yml` workflow automates the testing process:
 
 - **Triggers**: Runs on pushes to main/master, pull requests, and manual triggers
 - **Environment**: Uses Ubuntu with JDK 11 and Chrome browser
-- **Process**: Builds the project, runs tests, and generates reports
-- **Artifacts**: Saves test reports and screenshots for 14 days
-- **Summary**: Provides a test execution summary directly in GitHub
+- **Process**: Builds the project and runs tests with Maven
+- **Artifacts**: Saves test reports and screenshots for later review
 
 ### Running Tests with Different Browsers
 
@@ -115,22 +114,10 @@ mvn test -Dbrowser=edge
 
 ### Viewing Test Reports
 
-After the GitHub Actions workflow runs, you can access test reports in two ways:
+After the GitHub Actions workflow runs, you can access test reports:
 
-1. **Download Artifacts**: 
-   - Go to the workflow run in GitHub Actions
-   - Download the "test-reports-{run_id}" artifact
-   - Extract and open the HTML reports in a browser
-
-2. **Workflow Summary**:
-   - A summary of test results is displayed directly in the workflow run
-   - This provides a quick overview without downloading artifacts
-
-### Workflow Features
-
-- **Concurrency control**: Prevents multiple workflow runs from interfering
-- **Timeout limits**: Prevents workflows from running indefinitely
-- **Caching**: Maven dependencies are cached to speed up builds
-- **Error handling**: Robust handling of test failures
+- Go to the workflow run in GitHub Actions
+- Download the "test-reports" artifact
+- Extract and open the HTML reports in a browser
 
 For more details on GitHub Actions configuration, see the [workflows README](.github/workflows/README.md).
