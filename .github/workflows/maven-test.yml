@@ -7,10 +7,16 @@ on:
     branches: [ main, master ]
   workflow_dispatch:  # Allows manual triggering of the workflow
 
+# Limit concurrent runs of this workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: Run Selenium Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 15  # Set a timeout to prevent hung jobs
     
     steps:
     - name: Checkout code
@@ -36,7 +42,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: test-reports
+        name: test-reports-chrome-${{ github.run_id }}
         path: |
           test-output/reports/
           test-output/screenshots/

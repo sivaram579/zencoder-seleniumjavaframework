@@ -66,11 +66,21 @@ Publishes test reports to GitHub Pages.
 
 To enable email notifications for scheduled test failures, add these secrets to your repository:
 
+- `ENABLE_EMAIL_NOTIFICATIONS`: Set to 'true' to enable email notifications
 - `MAIL_SERVER`: SMTP server address
 - `MAIL_PORT`: SMTP server port
 - `MAIL_USERNAME`: Email username
 - `MAIL_PASSWORD`: Email password
 - `NOTIFICATION_EMAIL`: Email address to receive notifications
+
+## Required Setup for GitHub Pages
+
+To enable publishing reports to GitHub Pages:
+
+1. Go to your repository settings
+2. Navigate to "Pages" under "Code and automation"
+3. Under "Build and deployment", select "GitHub Actions" as the source
+4. The publish-reports.yml workflow will handle the rest
 
 ## Running Workflows Manually
 
@@ -89,3 +99,14 @@ You can customize these workflows by:
 - Modifying the browser matrix
 - Adjusting the schedule
 - Adding more test parameters
+- Modifying timeout values
+- Adjusting concurrency settings
+
+## Workflow Optimizations
+
+The workflows include several optimizations:
+- **Concurrency limits**: Prevents multiple workflow runs from interfering with each other
+- **Timeouts**: Prevents workflows from running indefinitely
+- **Conditional steps**: Email notifications only run when enabled
+- **Artifact naming**: Unique names for artifacts from different runs
+- **Error handling**: Robust handling of missing files and directories

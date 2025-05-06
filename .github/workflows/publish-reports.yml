@@ -10,24 +10,50 @@ jobs:
   publish:
     name: Publish Test Reports
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # Set a timeout to prevent hung jobs
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }}
     
+    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
-    - name: Download artifact
+    - name: Download artifacts
       uses: dawidd6/action-download-artifact@v2
       with:
         workflow: ${{ github.event.workflow_run.workflow_id }}
         run_id: ${{ github.event.workflow_run.id }}
-        name: test-reports
-        path: test-reports
+        path: artifacts
+        
+    - name: Display structure of downloaded files
+      run: ls -R artifacts
         
     - name: Setup Pages
       uses: actions/configure-pages@v3
       
     - name: Create report directory
       run: |
-        mkdir -p public
-        cp -r test-reports/* public/
+        mkdir -p public/reports
+        mkdir -p public/screenshots
+        
+        # Copy all report files from all artifacts
+        find artifacts -path "*/test-output/reports" -type d | while read dir; do
+          echo "Copying reports from $dir"
+          cp -r "$dir"/* public/reports/ || true
+        done
+        
+        # Copy all screenshot files from all artifacts
+        find artifacts -path "*/test-output/screenshots" -type d | while read dir; do
+          echo "Copying screenshots from $dir"
+          cp -r "$dir"/* public/screenshots/ || true
+        done
         
     - name: Create index.html
       run: |
@@ -37,31 +63,65 @@ jobs:
             <title>Test Reports</title>
             <style>
                 body { font-family: Arial, sans-serif; margin: 20px; }
-                h1 { color: #333; }
+                h1, h2 { color: #333; }
                 ul { list-style-type: none; padding: 0; }
                 li { margin: 10px 0; }
                 a { color: #0366d6; text-decoration: none; }
                 a:hover { text-decoration: underline; }
                 .timestamp { color: #666; font-size: 0.8em; }
+                .container { margin-bottom: 30px; }
+                .no-reports { color: #666; font-style: italic; }
             </style>
         </head>
         <body>
             <h1>Test Reports</h1>
             <p>Latest test reports from GitHub Actions:</p>
-            <ul>' > public/index.html
             
-        # List all HTML files and create links
-        find public/reports -name "*.html" | sort -r | while read file; do
-          filename=$(basename "$file")
-          date=$(echo $filename | grep -oP 'TestReport_\K[0-9-_]+' || echo "Unknown")
-          echo "<li><a href=\"${file#public/}\">$filename</a> <span class=\"timestamp\">$date</span></li>" >> public/index.html
-        done
+            <div class="container">
+                <h2>Test Reports</h2>
+                <ul>' > public/index.html
+            
+        # Check if reports directory exists and has HTML files
+        if [ -d "public/reports" ] && [ "$(find public/reports -name "*.html" | wc -l)" -gt 0 ]; then
+            # List all HTML files and create links
+            find public/reports -name "*.html" | sort -r | while read file; do
+              filename=$(basename "$file")
+              date=$(echo $filename | grep -oP 'TestReport_\K[0-9-_]+' || echo "Unknown")
+              echo "<li><a href=\"${file#public/}\">$filename</a> <span class=\"timestamp\">$date</span></li>" >> public/index.html
+            done
+        else
+            echo '<li class="no-reports">No test reports available</li>' >> public/index.html
+        fi
         
         echo '
-            </ul>
-            <p>Run ID: ${{ github.event.workflow_run.id }}</p>
-            <p>Workflow: ${{ github.event.workflow_run.workflow_id }}</p>
-            <p>Generated on: '"$(date)"'</p>
+                </ul>
+            </div>
+            
+            <div class="container">
+                <h2>Screenshots</h2>
+                <ul>' >> public/index.html
+                
+        # Check if screenshots directory exists and has files
+        if [ -d "public/screenshots" ] && [ "$(find public/screenshots -name "*.png" | wc -l)" -gt 0 ]; then
+            # List all PNG files and create links
+            find public/screenshots -name "*.png" | sort -r | while read file; do
+              filename=$(basename "$file")
+              echo "<li><a href=\"${file#public/}\">$filename</a></li>" >> public/index.html
+            done
+        else
+            echo '<li class="no-reports">No screenshots available</li>' >> public/index.html
+        fi
+        
+        echo '
+                </ul>
+            </div>
+            
+            <div class="container">
+                <h2>Run Information</h2>
+                <p>Run ID: ${{ github.event.workflow_run.id }}</p>
+                <p>Workflow: ${{ github.event.workflow_run.workflow_name }}</p>
+                <p>Generated on: '"$(date)"'</p>
+            </div>
         </body>
         </html>' >> public/index.html
         
