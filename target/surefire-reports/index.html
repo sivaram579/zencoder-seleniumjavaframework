@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Test_Suite" class="navigator-link">
-              <span class="suite-name border-failed">Test Suite</span>
+              <span class="suite-name border-passed">Test Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -92,21 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">6 methods, 1 failed,   5 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Test_Suite" class="hide-methods failed suite-Test_Suite"> (hide)</a> <!-- hide-methods failed suite-Test_Suite -->
-                      <a href="#" panel-name="suite-Test_Suite" class="show-methods failed suite-Test_Suite"> (show)</a> <!-- show-methods failed suite-Test_Suite -->
-                    </span>
-                    <div class="method-list-content failed suite-Test_Suite">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Test_Suite" title="com.orangehrm.tests.OrderTest" class="method navigator-link" hash-for-method="testAddItemToCartAndPlaceOrder">testAddItemToCartAndPlaceOrder</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-Test_Suite -->
+                    <span class="method-stats">5 methods,   5 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -152,50 +138,28 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Test_Suite" class="panel Test_Suite">
-          <div class="suite-Test_Suite-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">com.orangehrm.tests.OrderTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="testAddItemToCartAndPlaceOrder">
-                  </a> <!-- testAddItemToCartAndPlaceOrder -->
-                  <span class="method-name">testAddItemToCartAndPlaceOrder</span>
-                  <div class="stack-trace">java.lang.AssertionError: Remove button is not displayed expected [true] but found [false]
-	at com.orangehrm.tests.OrderTest.testAddItemToCartAndPlaceOrder(OrderTest.java:36)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 34 stack frames
-</div> <!-- stack-trace -->
-                  <em>
-(Verify user can add item to cart and complete checkout process)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Test_Suite-class-failed -->
           <div class="suite-Test_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.orangehrm.tests.LoginTest</span>
+              <span class="class-name">com.orangehrm.tests.OrangeHRMTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoginAndVerifyHomepage">
-                  </a> <!-- testLoginAndVerifyHomepage -->
-                  <span class="method-name">testLoginAndVerifyHomepage</span>
+                  <a name="testLoginToOrangeHRM">
+                  </a> <!-- testLoginToOrangeHRM -->
+                  <span class="method-name">testLoginToOrangeHRM</span>
                   <em>
-(Verify user can login with valid credentials)                  </em>
+(Verify user can login to OrangeHRM)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoginWithInvalidCredentials">
-                  </a> <!-- testLoginWithInvalidCredentials -->
-                  <span class="method-name">testLoginWithInvalidCredentials</span>
+                  <a name="testNavigateToAdminPage">
+                  </a> <!-- testNavigateToAdminPage -->
+                  <span class="method-name">testNavigateToAdminPage</span>
                   <em>
-(Verify error message for invalid credentials)                  </em>
+(Verify user can navigate to Admin page)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -220,25 +184,25 @@
           <div class="suite-Test_Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">com.orangehrm.tests.OrangeHRMTest</span>
+              <span class="class-name">com.orangehrm.tests.LoginTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testLoginToOrangeHRM">
-                  </a> <!-- testLoginToOrangeHRM -->
-                  <span class="method-name">testLoginToOrangeHRM</span>
+                  <a name="testLoginAndVerifyHomepage">
+                  </a> <!-- testLoginAndVerifyHomepage -->
+                  <span class="method-name">testLoginAndVerifyHomepage</span>
                   <em>
-(Verify user can login to OrangeHRM)                  </em>
+(Verify user can login with valid credentials)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="testNavigateToAdminPage">
-                  </a> <!-- testNavigateToAdminPage -->
-                  <span class="method-name">testNavigateToAdminPage</span>
+                  <a name="testLoginWithInvalidCredentials">
+                  </a> <!-- testLoginWithInvalidCredentials -->
+                  <span class="method-name">testLoginWithInvalidCredentials</span>
                   <em>
-(Verify user can navigate to Admin page)                  </em>
+(Verify error message for invalid credentials)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -307,36 +271,32 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(6);
+data.addRows(5);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testAddItemToCartAndPlaceOrder')
-data.setCell(0, 2, 'com.orangehrm.tests.OrderTest')
-data.setCell(0, 3, 11603);
+data.setCell(0, 1, 'testLoginToOrangeHRM')
+data.setCell(0, 2, 'com.orangehrm.tests.OrangeHRMTest')
+data.setCell(0, 3, 17319);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'testNavigateToAdminPage')
 data.setCell(1, 2, 'com.orangehrm.tests.OrangeHRMTest')
-data.setCell(1, 3, 8961);
+data.setCell(1, 3, 16317);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'testLoginToOrangeHRM')
-data.setCell(2, 2, 'com.orangehrm.tests.OrangeHRMTest')
-data.setCell(2, 3, 8231);
+data.setCell(2, 1, 'testAddMultipleItemsToCart')
+data.setCell(2, 2, 'com.orangehrm.tests.OrderTest')
+data.setCell(2, 3, 2636);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'testAddMultipleItemsToCart')
-data.setCell(3, 2, 'com.orangehrm.tests.OrderTest')
-data.setCell(3, 3, 2173);
+data.setCell(3, 1, 'testLoginAndVerifyHomepage')
+data.setCell(3, 2, 'com.orangehrm.tests.LoginTest')
+data.setCell(3, 3, 1711);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'testLoginAndVerifyHomepage')
+data.setCell(4, 1, 'testLoginWithInvalidCredentials')
 data.setCell(4, 2, 'com.orangehrm.tests.LoginTest')
-data.setCell(4, 3, 1402);
-data.setCell(5, 0, 5)
-data.setCell(5, 1, 'testLoginWithInvalidCredentials')
-data.setCell(5, 2, 'com.orangehrm.tests.LoginTest')
-data.setCell(5, 3, 1249);
+data.setCell(4, 3, 1533);
 window.suiteTableData['Test_Suite']= { tableData: data, tableDiv: 'times-div-Test_Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 33 seconds</span>
+              <span class="suite-total-time">Total running time: 39 seconds</span>
               <div id="times-div-Test_Suite">
               </div> <!-- times-div-Test_Suite -->
             </div> <!-- times-div -->
@@ -369,79 +329,65 @@ return data;
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginAndVerifyHomepage</span>
-                <span class="method-start">2799 ms</span>
+                <span class="method-start">2078 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">4201 ms</span>
+                <span class="method-start">3794 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">4499 ms</span>
+                <span class="method-start">4119 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginWithInvalidCredentials</span>
-                <span class="method-start">5486 ms</span>
+                <span class="method-start">5080 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">6735 ms</span>
+                <span class="method-start">6613 ms</span>
               </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.orangehrm.tests.OrderTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">7079 ms</span>
-              </div> <!-- configuration-method before -->
-              <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">testAddItemToCartAndPlaceOrder</span>
-                <span class="method-start">7969 ms</span>
-              </div> <!-- test-method -->
-              <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">19585 ms</span>
-              </div> <!-- configuration-method after -->
-              <div class="configuration-method before">
-                <span class="method-name">setUp</span>
-                <span class="method-start">20217 ms</span>
+                <span class="method-start">6988 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testAddMultipleItemsToCart</span>
-                <span class="method-start">21183 ms</span>
+                <span class="method-start">8229 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">23357 ms</span>
+                <span class="method-start">10865 ms</span>
               </div> <!-- configuration-method after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">com.orangehrm.tests.OrangeHRMTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">23933 ms</span>
+                <span class="method-start">11442 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testLoginToOrangeHRM</span>
-                <span class="method-start">24925 ms</span>
+                <span class="method-start">12522 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">33163 ms</span>
+                <span class="method-start">29843 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
-                <span class="method-start">33390 ms</span>
+                <span class="method-start">30364 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testNavigateToAdminPage</span>
-                <span class="method-start">34215 ms</span>
+                <span class="method-start">31377 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">43177 ms</span>
+                <span class="method-start">47694 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
