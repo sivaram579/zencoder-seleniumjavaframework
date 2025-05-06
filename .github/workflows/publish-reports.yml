@@ -1,0 +1,75 @@
+name: Publish Test Reports
+
+on:
+  workflow_run:
+    workflows: ["Selenium Test Automation", "Parallel Selenium Tests", "Scheduled Selenium Tests"]
+    types:
+      - completed
+
+jobs:
+  publish:
+    name: Publish Test Reports
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }}
+    
+    steps:
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: ${{ github.event.workflow_run.workflow_id }}
+        run_id: ${{ github.event.workflow_run.id }}
+        name: test-reports
+        path: test-reports
+        
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+      
+    - name: Create report directory
+      run: |
+        mkdir -p public
+        cp -r test-reports/* public/
+        
+    - name: Create index.html
+      run: |
+        echo '<!DOCTYPE html>
+        <html>
+        <head>
+            <title>Test Reports</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                h1 { color: #333; }
+                ul { list-style-type: none; padding: 0; }
+                li { margin: 10px 0; }
+                a { color: #0366d6; text-decoration: none; }
+                a:hover { text-decoration: underline; }
+                .timestamp { color: #666; font-size: 0.8em; }
+            </style>
+        </head>
+        <body>
+            <h1>Test Reports</h1>
+            <p>Latest test reports from GitHub Actions:</p>
+            <ul>' > public/index.html
+            
+        # List all HTML files and create links
+        find public/reports -name "*.html" | sort -r | while read file; do
+          filename=$(basename "$file")
+          date=$(echo $filename | grep -oP 'TestReport_\K[0-9-_]+' || echo "Unknown")
+          echo "<li><a href=\"${file#public/}\">$filename</a> <span class=\"timestamp\">$date</span></li>" >> public/index.html
+        done
+        
+        echo '
+            </ul>
+            <p>Run ID: ${{ github.event.workflow_run.id }}</p>
+            <p>Workflow: ${{ github.event.workflow_run.workflow_id }}</p>
+            <p>Generated on: '"$(date)"'</p>
+        </body>
+        </html>' >> public/index.html
+        
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: public
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2

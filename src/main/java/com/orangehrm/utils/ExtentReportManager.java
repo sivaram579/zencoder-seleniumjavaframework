@@ -53,7 +53,15 @@ public class ExtentReportManager {
         // Set system info
         extent.setSystemInfo("OS", System.getProperty("os.name"));
         extent.setSystemInfo("Java Version", System.getProperty("java.version"));
-        extent.setSystemInfo("Browser", "Chrome");
+        extent.setSystemInfo("Browser", System.getProperty("browser", "chrome"));
+        
+        // Add CI/CD information if running in GitHub Actions
+        if (System.getenv("GITHUB_ACTIONS") != null) {
+            extent.setSystemInfo("CI/CD", "GitHub Actions");
+            extent.setSystemInfo("Workflow", System.getenv("GITHUB_WORKFLOW"));
+            extent.setSystemInfo("Run ID", System.getenv("GITHUB_RUN_ID"));
+            extent.setSystemInfo("Repository", System.getenv("GITHUB_REPOSITORY"));
+        }
         
         return extent;
     }
