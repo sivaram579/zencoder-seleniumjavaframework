@@ -35,7 +35,7 @@ jobs:
           
         - name: Publish Extent Reports
           if: always()
-          uses: actions/upload-artifact@v3
+          uses: actions/upload-artifact@v4
           with:
             name: extent-reports
             path: test-output/reports/
@@ -43,7 +43,7 @@ jobs:
             
         - name: Publish Screenshots
           if: always()
-          uses: actions/upload-artifact@v3
+          uses: actions/upload-artifact@v4
           with:
             name: test-screenshots
             path: test-output/screenshots/
@@ -57,13 +57,13 @@ jobs:
         
         steps:
         - name: Download Extent Reports
-          uses: actions/download-artifact@v3
+          uses: actions/download-artifact@v4
           with:
             name: extent-reports
             path: reports
             
         - name: Download Screenshots
-          uses: actions/download-artifact@v3
+          uses: actions/download-artifact@v4
           with:
             name: test-screenshots
             path: reports/screenshots
