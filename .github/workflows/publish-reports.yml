@@ -2,7 +2,7 @@ name: Publish Test Reports
 
 on:
   workflow_run:
-    workflows: ["Selenium Test Automation", "Parallel Selenium Tests", "Scheduled Selenium Tests"]
+    workflows: ["Selenium Test Automation"]
     types:
       - completed
 
