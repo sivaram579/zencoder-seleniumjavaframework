@@ -1,0 +1,8 @@
+com\orangehrm\pages\BasePage.class
+com\orangehrm\utils\ExtentReportManager.class
+com\orangehrm\pages\LoginPage.class
+com\orangehrm\utils\Config.class
+com\orangehrm\utils\TestUtils.class
+com\orangehrm\pages\HomePage.class
+com\orangehrm\pages\CartPage.class
+com\orangehrm\pages\CheckoutPage.class

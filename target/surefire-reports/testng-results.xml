@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="6" passed="5" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-05-06T17:47:14 IST" name="Test Suite" finished-at="2025-05-06T17:47:57 IST" duration-ms="43428">
+    <groups>
+    </groups>
+    <test started-at="2025-05-06T17:47:14 IST" name="SauceDemo Tests" finished-at="2025-05-06T17:47:37 IST" duration-ms="23628">
+      <class name="com.orangehrm.tests.OrderTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.orangehrm.tests.OrderTest@2767e23c]" started-at="2025-05-06T17:47:21 IST" name="setUp" finished-at="2025-05-06T17:47:22 IST" duration-ms="890" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testAddItemToCartAndPlaceOrder()[pri:0, instance:com.orangehrm.tests.OrderTest@2767e23c]" started-at="2025-05-06T17:47:22 IST" name="testAddItemToCartAndPlaceOrder" description="Verify user can add item to cart and complete checkout process" finished-at="2025-05-06T17:47:33 IST" duration-ms="11603" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Remove button is not displayed expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Remove button is not displayed expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at com.orangehrm.tests.OrderTest.testAddItemToCartAndPlaceOrder(OrderTest.java:36)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:848)
+at org.testng.TestRunner.run(TestRunner.java:621)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1280)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1200)
+at org.testng.TestNG.runSuites(TestNG.java:1114)
+at org.testng.TestNG.run(TestNG.java:1082)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddItemToCartAndPlaceOrder -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.orangehrm.tests.OrderTest@2767e23c]" started-at="2025-05-06T17:47:33 IST" name="tearDown" finished-at="2025-05-06T17:47:34 IST" duration-ms="632" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.orangehrm.tests.OrderTest@2767e23c]" started-at="2025-05-06T17:47:34 IST" name="setUp" finished-at="2025-05-06T17:47:35 IST" duration-ms="966" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testAddMultipleItemsToCart()[pri:0, instance:com.orangehrm.tests.OrderTest@2767e23c]" started-at="2025-05-06T17:47:35 IST" name="testAddMultipleItemsToCart" description="Verify user can add multiple items to cart" finished-at="2025-05-06T17:47:37 IST" duration-ms="2173" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testAddMultipleItemsToCart -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.orangehrm.tests.OrderTest@2767e23c]" started-at="2025-05-06T17:47:37 IST" name="tearDown" finished-at="2025-05-06T17:47:37 IST" duration-ms="239" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.orangehrm.tests.OrderTest -->
+      <class name="com.orangehrm.tests.LoginTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.orangehrm.tests.LoginTest@33065d67]" started-at="2025-05-06T17:47:14 IST" name="setUp" finished-at="2025-05-06T17:47:17 IST" duration-ms="2793" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginAndVerifyHomepage()[pri:0, instance:com.orangehrm.tests.LoginTest@33065d67]" started-at="2025-05-06T17:47:17 IST" name="testLoginAndVerifyHomepage" description="Verify user can login with valid credentials" finished-at="2025-05-06T17:47:18 IST" duration-ms="1402" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginAndVerifyHomepage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.orangehrm.tests.LoginTest@33065d67]" started-at="2025-05-06T17:47:18 IST" name="tearDown" finished-at="2025-05-06T17:47:18 IST" duration-ms="296" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.orangehrm.tests.LoginTest@33065d67]" started-at="2025-05-06T17:47:18 IST" name="setUp" finished-at="2025-05-06T17:47:19 IST" duration-ms="987" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginWithInvalidCredentials()[pri:0, instance:com.orangehrm.tests.LoginTest@33065d67]" started-at="2025-05-06T17:47:19 IST" name="testLoginWithInvalidCredentials" description="Verify error message for invalid credentials" finished-at="2025-05-06T17:47:21 IST" duration-ms="1249" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginWithInvalidCredentials -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.orangehrm.tests.LoginTest@33065d67]" started-at="2025-05-06T17:47:21 IST" name="tearDown" finished-at="2025-05-06T17:47:21 IST" duration-ms="341" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.orangehrm.tests.LoginTest -->
+    </test> <!-- SauceDemo Tests -->
+    <test started-at="2025-05-06T17:47:38 IST" name="OrangeHRM Tests" finished-at="2025-05-06T17:47:57 IST" duration-ms="19464">
+      <class name="com.orangehrm.tests.OrangeHRMTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.orangehrm.tests.OrangeHRMTest@723ca036]" started-at="2025-05-06T17:47:38 IST" name="setUp" finished-at="2025-05-06T17:47:39 IST" duration-ms="992" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testLoginToOrangeHRM()[pri:0, instance:com.orangehrm.tests.OrangeHRMTest@723ca036]" started-at="2025-05-06T17:47:39 IST" name="testLoginToOrangeHRM" description="Verify user can login to OrangeHRM" finished-at="2025-05-06T17:47:47 IST" duration-ms="8231" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginToOrangeHRM -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.orangehrm.tests.OrangeHRMTest@723ca036]" started-at="2025-05-06T17:47:47 IST" name="tearDown" finished-at="2025-05-06T17:47:47 IST" duration-ms="226" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:com.orangehrm.tests.OrangeHRMTest@723ca036]" started-at="2025-05-06T17:47:47 IST" name="setUp" finished-at="2025-05-06T17:47:48 IST" duration-ms="825" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testNavigateToAdminPage()[pri:0, instance:com.orangehrm.tests.OrangeHRMTest@723ca036]" started-at="2025-05-06T17:47:48 IST" name="testNavigateToAdminPage" description="Verify user can navigate to Admin page" finished-at="2025-05-06T17:47:57 IST" duration-ms="8961" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNavigateToAdminPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:com.orangehrm.tests.OrangeHRMTest@723ca036]" started-at="2025-05-06T17:47:57 IST" name="tearDown" finished-at="2025-05-06T17:47:57 IST" duration-ms="218" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.orangehrm.tests.OrangeHRMTest -->
+    </test> <!-- OrangeHRM Tests -->
+  </suite> <!-- Test Suite -->
+</testng-results>

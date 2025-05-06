@@ -1,0 +1,5 @@
+com\orangehrm\tests\BaseTest.class
+com\orangehrm\tests\LoginTest.class
+com\orangehrm\tests\OrangeHRMTest.class
+com\orangehrm\listeners\TestListener.class
+com\orangehrm\tests\OrderTest.class
