@@ -32,3 +32,87 @@ jobs:
 
         - name: Run Maven tests
           run: mvn test -Dmaven.test.failure.ignore=true
+          
+        - name: Publish Extent Reports
+          if: always()
+          uses: actions/upload-artifact@v3
+          with:
+            name: extent-reports
+            path: test-output/reports/
+            retention-days: 7
+            
+        - name: Publish Screenshots
+          if: always()
+          uses: actions/upload-artifact@v3
+          with:
+            name: test-screenshots
+            path: test-output/screenshots/
+            retention-days: 7
+            
+    publish-reports:
+        name: Publish Test Reports
+        needs: test
+        runs-on: ubuntu-latest
+        if: success() || failure()
+        
+        steps:
+        - name: Download Extent Reports
+          uses: actions/download-artifact@v3
+          with:
+            name: extent-reports
+            path: reports
+            
+        - name: Download Screenshots
+          uses: actions/download-artifact@v3
+          with:
+            name: test-screenshots
+            path: reports/screenshots
+            
+        - name: Create Report Index
+          run: |
+            echo "<!DOCTYPE html>
+            <html>
+            <head>
+                <title>Selenium Test Reports</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; }
+                    h1 { color: #333; }
+                    ul { list-style-type: none; padding: 0; }
+                    li { margin: 10px 0; }
+                    a { color: #0366d6; text-decoration: none; }
+                    a:hover { text-decoration: underline; }
+                </style>
+            </head>
+            <body>
+                <h1>Selenium Test Reports</h1>
+                <ul id='report-list'></ul>
+                
+                <script>
+                    // List all HTML files in the directory
+                    const reportFiles = [
+                        $(find reports -name "*.html" -type f | sort | sed 's/reports\///' | sed 's/^/"/' | sed 's/$/"/' | tr '\n' ',')
+                    ];
+                    
+                    const reportList = document.getElementById('report-list');
+                    reportFiles.forEach(file => {
+                        if (file) {
+                            const li = document.createElement('li');
+                            const a = document.createElement('a');
+                            a.href = file;
+                            a.textContent = file.replace('.html', '');
+                            li.appendChild(a);
+                            reportList.appendChild(li);
+                        }
+                    });
+                </script>
+            </body>
+            </html>" > reports/index.html
+            
+        - name: Deploy to GitHub Pages
+          uses: peaceiris/actions-gh-pages@v3
+          if: github.ref == 'refs/heads/main'
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./reports
+            destination_dir: test-reports
+            keep_files: false
